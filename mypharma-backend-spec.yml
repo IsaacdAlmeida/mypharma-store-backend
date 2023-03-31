@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: MyPharma Backend API
+  description: API para gerenciar produtos de uma farmácia
+  version: 1.0.0
+servers:
+  - url: backend-mypharma-ngohz.ondigitalocean.app
+paths:
+  /products:
+    post:
+      summary: Cria um novo produto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        '201':
+          description: Produto criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+    get:
+      summary: Retorna todos os produtos
+      responses:
+        '200':
+          description: Lista de produtos retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+  /products/{id}:
+    get:
+      summary: Retorna um produto específico
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Produto retornado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+    put:
+      summary: Atualiza um produto existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        '200':
+          description: Produto atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+    delete:
+      summary: Exclui um produto existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Produto excluído com sucesso
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        description:
+          type: string
