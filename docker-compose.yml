@@ -24,6 +24,8 @@ services:
       # Monta o diretório atual, com todos os dados do projeto, 
       # dentro do diretório /app
       - ./:/app
+    env_file:
+      - .env
     # Lista de serviços do qual este serviço depende
     depends_on:
       # Precisa do mongo funcionando antes de subir o node
@@ -34,7 +36,7 @@ services:
       # Expõe a porta padrão da aplicação: altere aqui caso use outra porta
       - 3001:3001
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/CarShop
+      - MONGO_URI
 
   # Serviço que irá rodar o mongodb
   mongodb:
