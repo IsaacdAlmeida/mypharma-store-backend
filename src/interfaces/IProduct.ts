@@ -25,6 +25,11 @@ const ProductZodSchema = z.object({
     required_error: 'Description is required',
     invalid_type_error: 'Description must be a string',
   }).min(15, { message: 'Description must be 15 or more characters long' }),
+
+  productImageURL: z.string({
+    required_error: 'Description is required',
+    invalid_type_error: 'Description must be a string',
+  }).min(10, { message: 'Description must be 15 or more characters long' }),
 });
 
 export type IProduct = z.infer<typeof ProductZodSchema>;

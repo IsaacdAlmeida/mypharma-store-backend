@@ -7,6 +7,7 @@ const productMongooseSchema = new Schema<IProduct>({
   price: Number,
   category: String,
   description: String,
+  productImageURL: String,
 }, { versionKey: false });
 
 // https://stackoverflow.com/questions/13699784/mongoose-v-property-hide
