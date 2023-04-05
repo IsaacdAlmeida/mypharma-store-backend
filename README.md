@@ -196,6 +196,10 @@ http://localhost:3001/products
   </summary>
 </details>
 
+<br />
+
+Também há um arquivo na raiz do projeto chamado mypharma-backend-spec.yml, você poderá fazer a importação desse arquivo em algum cliente HTTP ou no Swagger.
+
 ## To-do: Implementação futuras
 
 - Método `POST` para a rota de `/login` que irá retornar um token JWT para ser utilizado no `header` das requisições de inserir, deletar e editar um produto, dessa forma garantimos que só aqueles com acesso conseguirão manipular os produtos.
