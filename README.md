@@ -36,7 +36,7 @@ git clone git@github.com:IsaacdAlmeida/mypharma-store-backend.git
 
 Após o clone do projeto, você deve utilizar comando `docker-compose up -d` na raíz do projeto, onde está localizado o docker-compose.
 
-Acesse o terminal interativo do bash utilizando o comando `docker exec -it mypharma_shop bash`, dentro do terminal você poderá utilizar o comando `npm start` para iniciar a aplicação, o servidor rodará na porta 3001, você poderá utilizar o insomnia ou outro cliente para fazer requisições para a API, as requisições deverão ser feitas para o endpoint:
+Acesse o terminal interativo do bash utilizando o comando `docker exec -it mypharma_shop bash`, dentro do terminal você deverá utilizar o comando `npm install` para instalar as dependências e após isso iniciar a aplicação com `npm start`, o servidor rodará na porta 3001, você poderá utilizar o insomnia ou outro cliente para fazer requisições para a API, as requisições deverão ser feitas para o endpoint:
 
 ```bash
 http://localhost:3001
@@ -54,7 +54,32 @@ Como se trata de um projeto para desafio técnico, dispensei a necessidade de ut
 
 Criei uma [branch para os testes](https://github.com/IsaacdAlmeida/mypharma-store-backend/tree/development-unit-test), todos os testes foram feitos utilizando Mocha, chai e sinon, eles testam cada camada de nossa aplicação.
 
-É possível, também, verificar a cobertura de testes em nossa aplicação, no caso do projeto foi utilizado o NYC, que verifica se todas as linhas e funções do código estão com cobertura de testes.
+É possível, também, verificar a cobertura de testes em nossa aplicação, no caso do projeto foi utilizado o NYC, que verifica se todas as linhas e funções do código estão cobertas pelo testes de unidade.
+
+Para rodar os testes da aplicação é necessário clonar o repositório, utilizando a chave SSH, com o seguinte comando:
+
+```bash
+git clone git@github.com:IsaacdAlmeida/mypharma-store-backend.git
+```
+
+Depois faça checkout para a branch de testes:
+
+```bash
+git checkout development-unit-test
+```
+
+Acesse o terminal interativo do bash utilizando o comando `docker exec -it mypharma_shop bash`, dentro do terminal você deverá utilizar o comando `npm install` para instalar as dependências. Com as dependências instaladas você poderá utilizar dois scripts para testar a aplicação.
+
+- `npm run test:dev` -> Executa os testes unitários em nossa aplicação.
+- `npm run test:coverage` -> Executa o NYC para verificar a cobertura de testes de nossa aplicação.
+
+## Conexão com banco de dados e mongoose
+
+Este projeto utiliza o banco de dados MongoDB para armazenar informações relevantes da aplicação. Para realizar a conexão com o banco de dados, foi utilizado o Mongoose, um framework para modelagem de objetos MongoDB no Node.js.
+
+Para garantir a segurança da conexão, foi utilizado um arquivo .env para armazenar a chave MONGO_URI, que é utilizada para estabelecer a conexão de dados. Além disso, a aplicação faz, alternadamente, a conexão para `mongodb://localhost:27017/MyPharmaShop`, permitindo a conexão com o banco criado ao subir o container.
+
+Vale destacar que o banco de dados em MongoDB está rodando em um cluster no AtlasDB, o que garante a disponibilidade e a escalabilidade da aplicação. Caso seja necessário, é possível alterar as configurações de conexão para se adequar ao ambiente em que a aplicação será executada.
 
 ## MSC - Model, Service e Controller
 
@@ -73,6 +98,12 @@ O paradigma da POO (**P**rogramação **O**rientada a **O**bjetos) é um modelo 
 Para mais detalhes, sugiro acessar documentações oficiais.
 
 ## Documentação (endpoints)
+
+- Atenção: Caso queira testar os endpoins localmente, você pode utilizar o seguinte endpoint:
+
+```bash
+http://localhost:3001/products
+```
 
 | Método | Funcionalidade                          | URL                         |
 | ------ | --------------------------------------- | --------------------------- |
