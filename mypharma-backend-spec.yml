@@ -1,41 +1,44 @@
 openapi: 3.0.0
 info:
-  title: MyPharma Backend API
-  description: API para gerenciar produtos de uma farmácia
   version: 1.0.0
+  title: MyPharma - Backend
+  description: API Rest para gerenciar produtos
+
 servers:
-  - url: backend-mypharma-ngohz.ondigitalocean.app
+  - url: https://backend-mypharma-ngohz.ondigitalocean.app/
+
 paths:
   /products:
     post:
-      summary: Cria um novo produto
+      summary: Create a new product
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Product"
+              $ref: '#/components/schemas/Product'
       responses:
         '201':
-          description: Produto criado com sucesso
+          description: Product created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product"
+                $ref: '#/components/schemas/Product'
     get:
-      summary: Retorna todos os produtos
+      summary: Get all products
       responses:
         '200':
-          description: Lista de produtos retornada com sucesso
+          description: List of products
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product"
+                  $ref: '#/components/schemas/Product'
+
   /products/{id}:
     get:
-      summary: Retorna um produto específico
+      summary: Get a product by ID
       parameters:
         - in: path
           name: id
@@ -44,13 +47,15 @@ paths:
             type: string
       responses:
         '200':
-          description: Produto retornado com sucesso
+          description: Product found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product"
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
     put:
-      summary: Atualiza um produto existente
+      summary: Update a product by ID
       parameters:
         - in: path
           name: id
@@ -62,16 +67,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Product"
+              $ref: '#/components/schemas/Product'
       responses:
         '200':
-          description: Produto atualizado com sucesso
+          description: Product updated
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product"
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
     delete:
-      summary: Exclui um produto existente
+      summary: Delete a product by ID
       parameters:
         - in: path
           name: id
@@ -80,17 +87,33 @@ paths:
             type: string
       responses:
         '204':
-          description: Produto excluído com sucesso
+          description: Product deleted
+        '404':
+          description: Product not found
+
 components:
   schemas:
     Product:
       type: object
       properties:
-        id:
+        productName:
           type: string
-        name:
-          type: string
+          minLength: 3
         price:
           type: number
+          minimum: 0
+          format: float
+        category:
+          type: string
+          minLength: 3
         description:
           type: string
+          minLength: 15
+        productImageURL:
+          type: string
+          minLength: 10
+      required:
+        - productName
+        - category
+        - description
+        - productImageURL
