@@ -42,11 +42,13 @@ Acesse o terminal interativo do bash utilizando o comando `docker exec -it mypha
 http://localhost:3001
 ```
 
+- O Link para a API foi derrubado a fim de evitar custos extras, mas o front-end se comunicava via API.
+<!-- 
 Caso não queira rodar a aplicação, você poderá utilizar o seguinte endpoint para realizar as requisições:
 
 ```bash
 https://backend-mypharma-ngohz.ondigitalocean.app/products
-```
+``` -->
 
 Como se trata de um projeto para desafio técnico, dispensei a necessidade de utilizar um token no `header` para fazer as requisições.
 
@@ -77,9 +79,11 @@ Acesse o terminal interativo do bash utilizando o comando `docker exec -it mypha
 
 Este projeto utiliza o banco de dados MongoDB para armazenar informações relevantes da aplicação. Para realizar a conexão com o banco de dados, foi utilizado o Mongoose, um framework para modelagem de objetos MongoDB no Node.js.
 
-Para garantir a segurança da conexão, foi utilizado um arquivo .env para armazenar a chave MONGO_URI, que é utilizada para estabelecer a conexão de dados. Além disso, a aplicação faz, alternadamente, a conexão para `mongodb://localhost:27017/MyPharmaShop`, permitindo a conexão com o banco criado ao subir o container.
+<!-- Para garantir a segurança da conexão, foi utilizado um arquivo .env para armazenar a chave MONGO_URI, que é utilizada para estabelecer a conexão de dados. Além disso, a aplicação faz, alternadamente, a conexão para `mongodb://localhost:27017/MyPharmaShop`, permitindo a conexão com o banco criado ao subir o container.
 
-Vale destacar que o banco de dados em MongoDB está rodando em um cluster no AtlasDB, o que garante a disponibilidade e a escalabilidade da aplicação. Caso seja necessário, é possível alterar as configurações de conexão para se adequar ao ambiente em que a aplicação será executada.
+Vale destacar que o banco de dados em MongoDB está rodando em um cluster no AtlasDB, o que garante a disponibilidade e a escalabilidade da aplicação. Caso seja necessário, é possível alterar as configurações de conexão para se adequar ao ambiente em que a aplicação será executada. -->
+
+Agora a aplicação não roda mais num cluster do AtlasDB, agora todo o banco será criado localmente ao subir o container do docker.
 
 ## MSC - Model, Service e Controller
 
@@ -107,11 +111,11 @@ http://localhost:3001/products
 
 | Método | Funcionalidade                          | URL                         |
 | ------ | --------------------------------------- | --------------------------- |
-| `POST` | Cria um novo produto | https://backend-mypharma-ngohz.ondigitalocean.app/products |
-| `GET` | Retorna uma lista de todos os produtos | https://backend-mypharma-ngohz.ondigitalocean.app/products |
-| `GET` | Retorna um produto pelo seu ID | https://backend-mypharma-ngohz.ondigitalocean.app/products/{id} |
-| `PUT` | Atualiza um produto existente pelo seu ID | https://backend-mypharma-ngohz.ondigitalocean.app/products/{id} |
-| `DELETE` | Remove um produto existente pelo seu ID | https://backend-mypharma-ngohz.ondigitalocean.app/products/{id} |
+| `POST` | Cria um novo produto | <http://localhost:3001/products> |
+| `GET` | Retorna uma lista de todos os produtos | <http://localhost:3001/products> |
+| `GET` | Retorna um produto pelo seu ID | <http://localhost:3001/products/{id}> |
+| `PUT` | Atualiza um produto existente pelo seu ID | <http://localhost:3001/products/{id}> |
+| `DELETE` | Remove um produto existente pelo seu ID | <http://localhost:3001/products/{id}> |
 
 <details>
   <summary>
